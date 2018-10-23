@@ -8,8 +8,7 @@ defmodule WebServer.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: WebServer.Worker.start_link(arg)
-      # {WebServer.Worker, arg},
+      Plug.Cowboy.child_spec(scheme: :http, plug: WebServer.Router, options: [port: 8666])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

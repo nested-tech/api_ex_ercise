@@ -1,21 +1,16 @@
 # WebServer
 
-**TODO: Add description**
+This implements a basic webserver responding to a `/hello` resource with a
+message. Nothing more. That fun is all yet to come!
 
-## Installation
+## Running
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `web_server` to your list of dependencies in `mix.exs`:
+This uses a [Supervisor](https://hexdocs.pm/elixir/Supervisor.html) to allow us
+to start the server simply by starting an `iex` shell:
 
-```elixir
-def deps do
-  [
-    {:web_server, "~> 0.1.0"}
-  ]
-end
-```
+    $ iex -S mix
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/web_server](https://hexdocs.pm/web_server).
+This can then be hit on the default URL either in a browser or using curl:
 
+    $ curl localhost:8666/hello
+    I mean, Hi?
