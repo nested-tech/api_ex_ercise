@@ -38,6 +38,50 @@ defmodule WebServer.Router do
   ## Exercise 1
 
   There are a couple of unimplemented endpoints in here, implement them!
+
+  # 2. Building a calculator
+
+  Simply returning plain text is fine, but what about if we want it to do
+  something?
+
+  Let's try a calculator, because numbers are fun!
+
+  HINT: If you check out the [`Plug.Conn` documentation](https://hexdocs.pm/plug/Plug.Conn.html),
+  you will see that within the `conn` struct we have access to, we can get all
+  sorts of bits and pieces from the request.
+
+  ## Exercise 2 - using the URL path
+
+  Let's add two numbers together, and let's say we are defining our API like this:
+
+  ```sh
+  $ curl localhost:8666/calculator/add/7/5
+  12
+  ```
+
+  There is an outline of the `GET` request we want below, but it has yet to be
+  implemented, so please do so! We're just adding two numbers, that should be
+  easy right?
+
+  If it is well easy (it may be), go ahead and implement other endpoints like
+  `/subtract` and `/multiply`
+
+  ## Exercise 3 - using the query parameters
+
+  The above implementation has a serious flaw; we can only ever add two numbers! I
+  love numbers, I want to add them all up, so how could we do that?
+
+  Here's an alternative implementation:
+
+  ```sh
+  $ curl localhost:8666/calculator/add?numbers=7,5,18
+  30
+  ```
+
+  This uses the URL path to declare that we want to add stuff up, then the
+  query parameters to define a more complex/flexible set of numbers.
+
+  Implement this!
   """
 
   # This gives us access to all the methods we're going to use here like `get/1`
@@ -89,5 +133,28 @@ defmodule WebServer.Router do
   #
   get "/echo_params" do
     send_resp(conn, 200, conn.query_string <> "\n")
+  end
+
+  # Exercise 2
+  #
+  # This should simply add two numbers.
+  #
+  # If you want to do something with part of the URL path, we can strip
+  # variables out accessed through the placeholders with a ":".
+  #
+  # So in the example below, you should be able to access variables called
+  # `number` and `number2` from somewhere...
+  #
+  get "/calculator/add/:number1/:number2" do
+    # IMPLEMENTME
+  end
+
+  # Exercise 3
+  #
+  # This endpoint should use the  query parameters to add up an arbitrary list
+  # of numbers
+  #
+  get "/calculator/add" do
+    # IMPLEMENTME
   end
 end
