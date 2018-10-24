@@ -82,6 +82,24 @@ defmodule WebServer.Router do
   query parameters to define a more complex/flexible set of numbers.
 
   Implement this!
+
+  # Refactoring our calculator
+
+  We now have some tests, but some aren't implemented and one is poorly written! From here on we're just going to be hands on, so it's all up to you to do the following exercises:
+
+  # Exercise 4 - Build out our test suite
+
+  Fix the poorly written test and implement the ones which aren't implemented yet
+
+  # Exercise 5 - Extract our Calculator
+
+  Create a new file `apps/lib/web_server/lib/calculator.ex` and implement a
+  `Calculator` module that has an `add` function to do our maths for us
+
+  Now pull all of the logic for doing the adding into that `Calculator` module,
+  using the tests to make sure we haven’t broken anything
+
+  **Bonus points**: Write tests for our new module
   """
 
   # This gives us access to all the methods we're going to use here like `get/1`
