@@ -146,7 +146,9 @@ defmodule WebServer.Router do
   # `number` and `number2` from somewhere...
   #
   get "/calculator/add/:number1/:number2" do
-    # IMPLEMENTME
+    %{"number1" => number1, "number2" => number2} = conn.path_params
+    sum = String.to_integer(number1) + String.to_integer(number2)
+    send_resp(conn, 200, Integer.to_string(sum) <> "\n")
   end
 
   # Exercise 3
@@ -155,6 +157,18 @@ defmodule WebServer.Router do
   # of numbers
   #
   get "/calculator/add" do
-    # IMPLEMENTME
+    %{"numbers" => numbers} =
+      conn
+      |> fetch_query_params
+      |> Map.get(:query_params)
+
+    sum =
+      numbers
+      |> String.split(",")
+      |> Enum.map(&String.to_integer(&1))
+      |> Enum.sum()
+      |> Integer.to_string()
+
+    send_resp(conn, 200, sum <> "\n")
   end
 end
