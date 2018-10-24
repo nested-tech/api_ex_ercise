@@ -75,7 +75,7 @@ defmodule WebServer.Router do
   # with some explanation
   #
   get "/missing" do
-    # IMPLEMENTME
+    send_resp(conn, 404, "These aren't the droids you're looking for\n")
   end
 
   # Exercise 1b
@@ -93,6 +93,6 @@ defmodule WebServer.Router do
   # documentation for this struct here: https://hexdocs.pm/plug/Plug.Conn.html
   #
   get "/echo_params" do
-    # IMPLEMENTME
+    send_resp(conn, 200, conn.query_string <> "\n")
   end
 end
