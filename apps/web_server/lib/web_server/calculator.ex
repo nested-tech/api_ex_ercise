@@ -9,5 +9,7 @@ defmodule WebServer.Calculator do
 
   def add([number1, number2]), do: number1 + number2
 
+  def add([head | tail]), do: head + add(tail)
+
   def add(_), do: nil
 end
