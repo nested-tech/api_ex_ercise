@@ -13,5 +13,9 @@ defmodule WebServer.CalculatorTest do
     test "returns 0 with an empty list" do
       assert Calculator.add([]) == 0
     end
+
+    test "with a single element list, returns that element" do
+      assert Calculator.add([12]) == 12
+    end
   end
 end
