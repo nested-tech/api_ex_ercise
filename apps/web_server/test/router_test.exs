@@ -60,8 +60,7 @@ defmodule WebServer.RouterTest do
         |> Router.call(@opts)
 
       assert conn.status == 200
-      # OOPS! This test is a failure, unlucky 13; fix this
-      assert conn.resp_body == "14\n"
+      assert conn.resp_body == "13\n"
     end
   end
 
