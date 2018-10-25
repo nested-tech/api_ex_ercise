@@ -102,6 +102,8 @@ defmodule WebServer.Router do
   **Bonus points**: Write tests for our new module
   """
 
+  alias WebServer.Calculator
+
   # This gives us access to all the methods we're going to use here like `get/1`
   use Plug.Router
   # This shows a nice page when we fail to find routes
@@ -164,8 +166,11 @@ defmodule WebServer.Router do
   # `number` and `number2` from somewhere...
   #
   get "/calculator/add/:number1/:number2" do
-    %{"number1" => number1, "number2" => number2} = conn.path_params
-    sum = String.to_integer(number1) + String.to_integer(number2)
+    sum =
+      [number1, number2]
+      |> Enum.map(&String.to_integer(&1))
+      |> Calculator.add()
+
     send_resp(conn, 200, Integer.to_string(sum) <> "\n")
   end
 
@@ -184,7 +189,7 @@ defmodule WebServer.Router do
       numbers
       |> String.split(",")
       |> Enum.map(&String.to_integer(&1))
-      |> Enum.sum()
+      |> Calculator.add()
       |> Integer.to_string()
 
     send_resp(conn, 200, sum <> "\n")
