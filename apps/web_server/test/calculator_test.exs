@@ -8,4 +8,8 @@ defmodule WebServer.CalculatorTest do
     assert Calculator.add("Hello, this clearly is ridiculous") == nil
     assert Calculator.add(0) == nil
   end
+
+  test "returns 0 with an empty list" do
+    assert Calculator.add([]) == 0
+  end
 end
