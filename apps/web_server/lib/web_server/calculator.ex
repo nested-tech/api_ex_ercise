@@ -5,5 +5,7 @@ defmodule WebServer.Calculator do
 
   def add([]), do: 0
 
+  def add([number]), do: number
+
   def add(_), do: nil
 end
