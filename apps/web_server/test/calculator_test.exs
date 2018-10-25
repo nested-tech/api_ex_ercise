@@ -17,5 +17,9 @@ defmodule WebServer.CalculatorTest do
     test "with a single element list, returns that element" do
       assert Calculator.add([12]) == 12
     end
+
+    test "with a two-element list, sums them up" do
+      assert Calculator.add([40, 2]) == 42
+    end
   end
 end
