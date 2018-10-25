@@ -65,10 +65,39 @@ defmodule WebServer.RouterTest do
   end
 
   describe "/calculator/add with query parameters" do
-    test "if given a single number, returns it"
+    test "if given a single number, returns it" do
+      conn =
+        conn(:get, "/calculator/add?numbers=1")
+        |> Router.call(@opts)
 
-    test "correctly adds two numbers"
+      assert conn.status == 200
+      assert conn.resp_body == "1\n"
+    end
 
-    test "correctly adds five numbers"
+    test "correctly adds two numbers" do
+      conn =
+        conn(:get, "/calculator/add?numbers=2,10")
+        |> Router.call(@opts)
+
+      assert conn.status == 200
+      assert conn.resp_body == "12\n"
+    end
+
+    # TODO: This is a bit rubbish, what about 6/7/etc? We might endup tailoring
+    # our implementation to this. This should probably be implemented using
+    # property-based testing!
+    #
+    # I'm lazy and not doing this for this example though, so if you're
+    # interested check this out:
+    # https://elixir-lang.org/blog/2017/10/31/stream-data-property-based-testing-and-data-generation-for-elixir/
+    #
+    test "correctly adds five numbers" do
+      conn =
+        conn(:get, "/calculator/add?numbers=3,82,106,12,14")
+        |> Router.call(@opts)
+
+      assert conn.status == 200
+      assert conn.resp_body == "217\n"
+    end
   end
 end
