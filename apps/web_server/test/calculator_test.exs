@@ -21,5 +21,11 @@ defmodule WebServer.CalculatorTest do
     test "with a two-element list, sums them up" do
       assert Calculator.add([40, 2]) == 42
     end
+
+    # TODO: Again, this should really be a property-based
+    # test rather than this "only 6 elements" bullshit
+    test "with a 6-element list, sums them all up" do
+      assert Calculator.add([12, 3, 14, 17, 92, 666]) == 804
+    end
   end
 end
