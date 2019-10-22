@@ -14,4 +14,9 @@ defmodule WebServer.Router do
   get "/hello" do
     send_resp(conn, 200, "I mean, Hi?\n")
   end
+
+  # This just avoids irritating errors when using a browser, ignore this
+  get "/favicon.ico" do
+    send_resp(conn, 200, "Go away stupid browser, no icon for you")
+  end
 end
